@@ -2,11 +2,16 @@
     <string name="app_name">My LSO</string>
     <string name="action_administration">Administration</string>
     <string name="action_leaderboard">Leaderboard</string>
+    <string name="action_enrollment">Enrollment</string>
     <!-- Strings used for fragments for navigation -->
     <string name="enrollment_fragment_label">Enrollment</string>
     <string name="leaderboard_fragment_label">Leaderboard</string>
+    <string name="administration_fragment_label">Administration</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+    <!-- Enrollment View -->
+    <string name="altar_boy_pick_encourage">Find your name</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

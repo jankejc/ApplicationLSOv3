@@ -10,10 +10,6 @@
         android:name="kornacki.jan.lsoappver3.view.EnrollmentFragment"
         android:label="@string/enrollment_fragment_label"
         tools:layout="@layout/fragment_enrollment">
-
-        <action
-            android:id="@+id/action_EnrollmentFragment_to_LeaderboardFragment"
-            app:destination="@id/LeaderboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/LeaderboardFragment"
@@ -23,6 +19,16 @@
 
         <action
             android:id="@+id/action_LeaderboardFragment_to_EnrollmentFragment"
+            app:destination="@id/EnrollmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AdministrationFragment"
+        android:name="kornacki.jan.lsoappver3.view.AdministrationFragment"
+        android:label="@string/administration_fragment_label"
+        tools:layout="@layout/fragment_administration">
+
+        <action
+            android:id="@+id/action_AdministrationFragment_to_EnrollmentFragment"
             app:destination="@id/EnrollmentFragment" />
     </fragment>
 </navigation>
