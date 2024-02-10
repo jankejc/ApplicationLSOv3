@@ -7,28 +7,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kornacki.jan.lsoappver3.viewModel.AdministrationViewModel
-import kornacki.jan.lsoappver3.R
+import kornacki.jan.lsoappver3.databinding.FragmentAdministrationBinding
 
 class AdministrationFragment : Fragment() {
 
     companion object {
         fun newInstance() = AdministrationFragment()
     }
-
+    private var _binding: FragmentAdministrationBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
     private lateinit var viewModel: AdministrationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.fragment_administration, container, false)
+        _binding = FragmentAdministrationBinding.inflate(inflater, container, false)
+
+        viewModel = ViewModelProvider(this)[AdministrationViewModel::class.java]
+
+        return binding.root
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AdministrationViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
 }

@@ -5,20 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import kornacki.jan.lsoappver3.R
+import androidx.lifecycle.ViewModelProvider
 import kornacki.jan.lsoappver3.databinding.FragmentLeaderboardBinding
+import kornacki.jan.lsoappver3.viewModel.LeaderboardViewModel
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class LeaderboardFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = LeaderboardFragment()
+    }
     private var _binding: FragmentLeaderboardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var viewModel: LeaderboardViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,16 +27,10 @@ class LeaderboardFragment : Fragment() {
     ): View? {
 
         _binding = FragmentLeaderboardBinding.inflate(inflater, container, false)
+
+        viewModel = ViewModelProvider(this)[LeaderboardViewModel::class.java]
+
         return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_LeaderboardFragment_to_EnrollmentFragment)
-        }
     }
 
     override fun onDestroyView() {
