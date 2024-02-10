@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My LSO</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_administration">Administration</string>
+    <string name="action_leaderboard">Leaderboard</string>
     <!-- Strings used for fragments for navigation -->
     <string name="enrollment_fragment_label">Enrollment</string>
     <string name="leaderboard_fragment_label">Leaderboard</string>
