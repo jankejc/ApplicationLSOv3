@@ -33,9 +33,11 @@ class EnrollmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /* TODO
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_EnrollmentFragment_to_LeaderboardFragment)
         }
+        */
     }
 
     override fun onDestroyView() {

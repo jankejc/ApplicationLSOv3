@@ -12,6 +12,7 @@
 
     <!-- Enrollment View -->
     <string name="altar_boy_pick_encourage">Find your name</string>
+    <string name="event_pick_encourage">Choose event</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
