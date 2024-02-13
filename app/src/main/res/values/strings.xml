@@ -1,8 +1,10 @@
 <resources>
+    <!-- General -->
     <string name="app_name">My LSO</string>
     <string name="action_administration">Administration</string>
     <string name="action_leaderboard">Leaderboard</string>
     <string name="action_enrollment">Enrollment</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="enrollment_fragment_label">Enrollment</string>
     <string name="leaderboard_fragment_label">Leaderboard</string>
@@ -13,6 +15,16 @@
     <!-- Enrollment View -->
     <string name="altar_boy_pick_encourage">Find your name</string>
     <string name="event_pick_encourage">Choose event</string>
+    <string name="enroll">Enroll yourself!</string>
+    <string name="toast_db_error_no_presence_add">Adding the presence failed</string>
+    <string name="toast_presence_add_successful">Adding the presence successful!</string>
+    <string name="toast_choose_again">Wrong name or event! Choose again.</string>
+    <string name="toast_no_data">Lack of names or events! Contact with administrator.</string>
+    <string name="pick_encourage">choose</string>
+
+    <!-- General messages -->
+    <string name="toast_altar_boys_names_problem">There is problem with altar boys names.</string>
+    <string name="toast_events_names_problem">There is problem with events names.</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
