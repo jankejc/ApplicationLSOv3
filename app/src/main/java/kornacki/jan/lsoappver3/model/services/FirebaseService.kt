@@ -8,6 +8,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import kornacki.jan.lsoappver3.model.objects.AltarBoy
 import kornacki.jan.lsoappver3.model.objects.Event
+import kornacki.jan.lsoappver3.viewModel.AdministrationViewModel
 import kornacki.jan.lsoappver3.viewModel.EnrollmentViewModel
 
 const val FIREBASE_SERVICE_TAG = "Firebase Service"
@@ -26,10 +27,22 @@ object FirebaseService {
         readAltarBoys()
     }
 
-    fun createAltarBoy(altarBoy: AltarBoy) {
-        // TODO: what if failure
-        // TODO: null check
+    fun createAltarBoy(
+        altarBoy: AltarBoy,
+        callback: AdministrationViewModel.FirebaseStatusCallback
+    ) {
+        // I know that I have here non-null object,
+        // because in alert I accept only non-empty string,
+        // so object must have been well-initialized.
         altarBoysDbRef.child(altarBoy.name!!).setValue(altarBoy)
+            .addOnCompleteListener { task ->
+                // This is asynchronous...
+                if (task.isSuccessful) {
+                    callback.onUpdateSuccess()
+                } else {
+                    callback.onUpdateFailure()
+                }
+            }
     }
 
     fun updateAltarBoy(altarBoy: AltarBoy) {

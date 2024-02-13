@@ -9,6 +9,7 @@ import kornacki.jan.lsoappver3.model.objects.Presence
 import kornacki.jan.lsoappver3.model.services.FirebaseService
 
 object EnrollmentViewModel : ViewModel() {
+    // TODO: callback from db and toast when success and failure
     // LiveData
     private val _altarBoys = MutableLiveData<ArrayList<AltarBoy>>()
     val altarBoys: LiveData<ArrayList<AltarBoy>> = _altarBoys

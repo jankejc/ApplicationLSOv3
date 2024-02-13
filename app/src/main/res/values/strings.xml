@@ -27,10 +27,18 @@
     <string name="button_delete_altar_boy">delete altar boy</string>
     <string name="button_add_event">add event</string>
     <string name="button_delete_event">delete event</string>
+    <string name="alert_password_needed">Give the password:</string>
+    <string name="alert_option_accept">Accept</string>
+    <string name="alert_option_decline">Decline</string>
+    <string name="toast_wrong_password">Wrong password!</string>
+    <string name="alert_type_altar_boy_name">Type altar boy name:</string>
+    <string name="toast_altar_boy_wrong_name">Wrong altar boy name!</string>
 
     <!-- General messages -->
     <string name="toast_altar_boys_names_problem">There is problem with altar boys names.</string>
     <string name="toast_events_names_problem">There is problem with events names.</string>
+    <string name="toast_update_success">Update went successful.</string>
+    <string name="toast_update_failure">Update failure! Check data for change and maybe try again.</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

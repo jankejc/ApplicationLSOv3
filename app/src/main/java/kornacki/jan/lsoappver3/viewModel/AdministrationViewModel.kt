@@ -1,18 +1,16 @@
 package kornacki.jan.lsoappver3.viewModel
 
 import androidx.lifecycle.ViewModel
+import kornacki.jan.lsoappver3.model.objects.AltarBoy
+import kornacki.jan.lsoappver3.model.services.FirebaseService
 
-class AdministrationViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+object AdministrationViewModel : ViewModel() {
+    fun createAltarBoy(name: String, callback: FirebaseStatusCallback) {
+        FirebaseService.createAltarBoy(AltarBoy(name.trim()), callback)
+    }
 
-    //            val presence = Presence(event, date)
-//            viewModel.updateAltarBoy(
-//                AltarBoy(
-//                    "Jan Kornacki",
-//                    arrayListOf(
-//                        Presence(Event("Droga Krzyżowa", 3), LocalDateTime.now()),
-//                        Presence(Event("Gorzkie Żale", 2), LocalDateTime.now().plusHours(1))
-//                    )
-//                )
-//            )
+    interface FirebaseStatusCallback {
+        fun onUpdateSuccess()
+        fun onUpdateFailure()
+    }
 }
