@@ -27,12 +27,17 @@
     <string name="button_delete_altar_boy">delete altar boy</string>
     <string name="button_add_event">add event</string>
     <string name="button_delete_event">delete event</string>
-    <string name="alert_password_needed">Give the password:</string>
+    <string name="alert_password_needed">Give the password</string>
     <string name="alert_option_accept">Accept</string>
     <string name="alert_option_decline">Decline</string>
     <string name="toast_wrong_password">Wrong password!</string>
-    <string name="alert_type_altar_boy_name">Type altar boy name:</string>
+    <string name="alert_type_altar_boy_name">Type altar boy name</string>
     <string name="toast_altar_boy_wrong_name">Wrong altar boy name!</string>
+    <string name="toast_event_wrong_name">Wrong event name!</string>
+    <string name="alert_specify_event_name">Specify event</string>
+    <string name="toast_event_wrong_points">Wrong points!</string>
+    <string name="alert_add_event_type_name">Type name</string>
+    <string name="alert_add_event_type_points">Type points</string>
 
     <!-- General messages -->
     <string name="toast_altar_boys_names_problem">There is problem with altar boys names.</string>

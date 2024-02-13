@@ -5,13 +5,15 @@ import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.setPadding
 import androidx.navigation.NavController
 import kornacki.jan.lsoappver3.databinding.ActivityMainBinding
 
@@ -45,6 +47,15 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    private fun getContainerizedView(view: View): LinearLayout {
+        val container = LinearLayout(this)
+        container.setPadding(30)
+        container.orientation = LinearLayout.VERTICAL
+        container.addView(view)
+
+        return container
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -56,10 +67,10 @@ class MainActivity : AppCompatActivity() {
 
                 AlertDialog.Builder(this)
                     .setTitle(getString(R.string.alert_password_needed))
-                    .setView(passwordInput)
+                    .setView(getContainerizedView(passwordInput))
                     .setPositiveButton(getString(R.string.alert_option_accept)) { _, _ ->
                         val password = passwordInput.text.toString()
-                        if (password == "lsoxms") { // TODO: get pass from db
+                        if (password == "") { // TODO: get pass from db
                             navController.navigate(R.id.AdministrationFragment)
                         } else {
                             Toast.makeText(

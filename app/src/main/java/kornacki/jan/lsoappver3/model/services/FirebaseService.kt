@@ -29,7 +29,7 @@ object FirebaseService {
 
     fun createAltarBoy(
         altarBoy: AltarBoy,
-        callback: AdministrationViewModel.FirebaseStatusCallback
+        callback: AdministrationViewModel.FirebaseStatusCallback,
     ) {
         // I know that I have here non-null object,
         // because in alert I accept only non-empty string,
@@ -84,10 +84,19 @@ object FirebaseService {
         })
     }
 
-    fun createEvent(event: Event) {
-        // TODO: what if failure
+    fun createEvent(event: Event, callback: AdministrationViewModel.FirebaseStatusCallback) {
         // TODO: null check
-        eventsDbRef.child(event.name!!).setValue(event)
+        eventsDbRef
+            .child(event.name!!)
+            .setValue(event)
+            .addOnCompleteListener { task ->
+                // This is asynchronous...
+                if (task.isSuccessful) {
+                    callback.onUpdateSuccess()
+                } else {
+                    callback.onUpdateFailure()
+                }
+            }
     }
 
     fun updateEvent(event: Event) {
