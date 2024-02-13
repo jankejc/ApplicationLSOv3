@@ -1,6 +1,7 @@
 package kornacki.jan.lsoappver3
 
 import android.os.Bundle
+import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -8,6 +9,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import kornacki.jan.lsoappver3.databinding.ActivityMainBinding
 
@@ -47,7 +51,26 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_administration -> {
-                navController.navigate(R.id.AdministrationFragment)
+                val passwordInput = EditText(this)
+                passwordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+                AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.alert_password_needed))
+                    .setView(passwordInput)
+                    .setPositiveButton(getString(R.string.alert_option_accept)) { dialog, which ->
+                        val password = passwordInput.text.toString()
+                        if (password == "lsoxms") { // TODO: get pass from db
+                            navController.navigate(R.id.AdministrationFragment)
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                getString(R.string.toast_wrong_password),
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                    .setNegativeButton(getString(R.string.alert_option_decline), null)
+                    .show()
                 true
             }
             R.id.action_leaderboard -> {
@@ -66,5 +89,12 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (navController.currentDestination?.id != R.id.EnrollmentFragment) {
+            navController.navigate(R.id.EnrollmentFragment)
+        }
     }
 }
