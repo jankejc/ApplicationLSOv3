@@ -25,6 +25,7 @@ object FirebaseService {
 
     init {
         readAltarBoys()
+        readEvents()
     }
 
     fun createAltarBoy(
@@ -61,9 +62,10 @@ object FirebaseService {
     }
 
     private fun readAltarBoys() {
-        val altarBoys = arrayListOf<AltarBoy>()
+
         altarBoysDbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val altarBoys = arrayListOf<AltarBoy>()
                 for (childSnapshot in dataSnapshot.children) {
                     val altarBoy = childSnapshot.getValue(AltarBoy::class.java)
                     altarBoy?.let {
@@ -85,7 +87,6 @@ object FirebaseService {
     }
 
     fun createEvent(event: Event, callback: AdministrationViewModel.FirebaseStatusCallback) {
-        // TODO: null check
         eventsDbRef
             .child(event.name!!)
             .setValue(event)
@@ -99,18 +100,10 @@ object FirebaseService {
             }
     }
 
-    fun updateEvent(event: Event) {
-        // TODO: what if failure
-        // TODO: null check
-        eventsDbRef
-            .child(event.name!!)
-            .setValue(event)
-    }
-
     private fun readEvents() {
-        val events = arrayListOf<Event>()
         eventsDbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val events = arrayListOf<Event>()
                 for (childSnapshot in dataSnapshot.children) {
                     val event = childSnapshot.getValue(Event::class.java)
                     event?.let {

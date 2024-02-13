@@ -107,6 +107,9 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
                     ),
                     this
                 )
+
+                binding.spinnerEvents.setSelection(0)
+                binding.spinnerAltarBoys.setSelection(0)
             }
         }
     }
