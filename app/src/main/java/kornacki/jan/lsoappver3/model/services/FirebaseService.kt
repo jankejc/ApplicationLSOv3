@@ -34,7 +34,8 @@ object FirebaseService {
         // I know that I have here non-null object,
         // because in alert I accept only non-empty string,
         // so object must have been well-initialized.
-        altarBoysDbRef.child(altarBoy.name!!).setValue(altarBoy)
+        altarBoysDbRef.child(altarBoy.name!!)
+            .setValue(altarBoy)
             .addOnCompleteListener { task ->
                 // This is asynchronous...
                 if (task.isSuccessful) {
@@ -45,12 +46,18 @@ object FirebaseService {
             }
     }
 
-    fun updateAltarBoy(altarBoy: AltarBoy) {
-        // TODO: what if failure
-        // TODO: null check
+    fun updateAltarBoy(altarBoy: AltarBoy, callback: EnrollmentViewModel.FirebaseStatusCallback) {
         altarBoysDbRef
             .child(altarBoy.name!!)
             .setValue(altarBoy)
+            .addOnCompleteListener { task ->
+                // This is asynchronous...
+                if (task.isSuccessful) {
+                    callback.onUpdateSuccess()
+                } else {
+                    callback.onUpdateFailure()
+                }
+            }
     }
 
     private fun readAltarBoys() {
@@ -67,7 +74,7 @@ object FirebaseService {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // TODO: what if failure
+                // There is toast in EnrollmentFragment that react to nulls in fields.
                 Log.w(
                     FIREBASE_SERVICE_TAG,
                     "Failed to read value.",
@@ -105,7 +112,7 @@ object FirebaseService {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // TODO: what if failure
+                // There is toast in EnrollmentFragment that react to nulls in fields.
                 Log.w(
                     FIREBASE_SERVICE_TAG,
                     "Failed to read value.",

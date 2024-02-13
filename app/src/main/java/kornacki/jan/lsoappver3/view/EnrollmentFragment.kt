@@ -20,7 +20,7 @@ import java.time.LocalDateTime
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class EnrollmentFragment : Fragment() {
+class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallback {
     private var _binding: FragmentEnrollmentBinding? = null
 
     // This property is only valid between onCreateView and
@@ -86,16 +86,16 @@ class EnrollmentFragment : Fragment() {
             val pickedAltarBoy = binding.spinnerAltarBoys.selectedItem as AltarBoy?
             val pickedEvent = binding.spinnerEvents.selectedItem as Event?
 
-            if (pickedAltarBoyId == 0L || pickedEventId == 0L) {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.toast_choose_again),
-                    Toast.LENGTH_LONG
-                ).show()
-            } else if (pickedAltarBoy == null || pickedEvent == null) {
+            if (pickedAltarBoy == null || pickedEvent == null) {
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.toast_no_data),
+                    Toast.LENGTH_LONG
+                ).show()
+            } else if (pickedAltarBoyId == 0L || pickedEventId == 0L) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.toast_choose_again),
                     Toast.LENGTH_LONG
                 ).show()
             } else {
@@ -104,22 +104,11 @@ class EnrollmentFragment : Fragment() {
                     Presence(
                         binding.spinnerEvents.selectedItem as Event,
                         LocalDateTime.now().toString()
-                    )
+                    ),
+                    this
                 )
-                // TODO: what if db lost connection
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.toast_presence_add_successful),
-                    Toast.LENGTH_LONG
-                ).show()
             }
         }
-
-        /* TODO: nice tip
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_EnrollmentFragment_to_LeaderboardFragment)
-        }
-        */
     }
 
     private fun getAltarBoysSpinnerAdapter(altarBoys: ArrayList<AltarBoy>):
@@ -146,6 +135,14 @@ class EnrollmentFragment : Fragment() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         return adapter
+    }
+
+    override fun onUpdateSuccess() {
+        Toast.makeText(context, getString(R.string.toast_presence_add_successful), Toast.LENGTH_LONG).show()
+    }
+
+    override fun onUpdateFailure() {
+        Toast.makeText(context, getString(R.string.toast_db_error_no_presence_add), Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

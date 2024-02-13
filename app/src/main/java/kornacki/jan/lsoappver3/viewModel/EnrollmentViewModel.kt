@@ -33,8 +33,20 @@ object EnrollmentViewModel : ViewModel() {
         _events.value = events
     }
 
-    fun createPresence(altarBoy: AltarBoy, presence: Presence) {
-        altarBoy.presences?.add(presence)
-        FirebaseService.updateAltarBoy(altarBoy)
+    fun createPresence(
+        altarBoy: AltarBoy,
+        presence: Presence,
+        callback: FirebaseStatusCallback
+    ) {
+        if (altarBoy.presences == null) {
+            altarBoy.presences = ArrayList()
+        }
+        altarBoy.presences!!.add(presence)
+        FirebaseService.updateAltarBoy(altarBoy, callback)
+    }
+
+    interface FirebaseStatusCallback {
+        fun onUpdateSuccess()
+        fun onUpdateFailure()
     }
 }
