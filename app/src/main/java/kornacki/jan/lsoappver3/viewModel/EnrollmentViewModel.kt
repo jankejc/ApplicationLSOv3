@@ -7,6 +7,7 @@ import kornacki.jan.lsoappver3.model.objects.AltarBoy
 import kornacki.jan.lsoappver3.model.objects.Event
 import kornacki.jan.lsoappver3.model.objects.Presence
 import kornacki.jan.lsoappver3.model.services.FirebaseService
+import java.time.LocalDateTime
 
 object EnrollmentViewModel : ViewModel() {
     // LiveData
@@ -34,13 +35,15 @@ object EnrollmentViewModel : ViewModel() {
 
     fun createPresence(
         altarBoy: AltarBoy,
-        presence: Presence,
+        event: Event,
+        now: LocalDateTime,
         callback: FirebaseStatusCallback
     ) {
         if (altarBoy.presences == null) {
             altarBoy.presences = ArrayList()
         }
-        altarBoy.presences!!.add(presence)
+        altarBoy.lastLogin = now.toString()
+        altarBoy.presences!!.add(Presence(event, now.toString()))
         FirebaseService.updateAltarBoy(altarBoy, callback)
     }
 

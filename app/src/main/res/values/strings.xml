@@ -20,6 +20,7 @@
     <string name="toast_presence_add_successful">Adding the presence successful!</string>
     <string name="toast_choose_again">Wrong name or event! Choose again.</string>
     <string name="toast_no_data">Lack of names or events! Contact with administrator.</string>
+    <string name="toast_frequent_log_in_protection">You\'ve enrolled in the last 30 minutes. You must wait.</string>
 
     <!-- Administration View -->
     <string name="button_add_altar_boy">add altar boy</string>

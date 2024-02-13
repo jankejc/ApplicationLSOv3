@@ -12,7 +12,6 @@ import kornacki.jan.lsoappver3.R
 import kornacki.jan.lsoappver3.databinding.FragmentEnrollmentBinding
 import kornacki.jan.lsoappver3.model.objects.AltarBoy
 import kornacki.jan.lsoappver3.model.objects.Event
-import kornacki.jan.lsoappver3.model.objects.Presence
 import kornacki.jan.lsoappver3.model.services.FirebaseService
 import kornacki.jan.lsoappver3.viewModel.EnrollmentViewModel
 import java.time.LocalDateTime
@@ -88,6 +87,8 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
             val pickedAltarBoy = binding.spinnerAltarBoys.selectedItem as AltarBoy?
             val pickedEvent = binding.spinnerEvents.selectedItem as Event?
 
+            val now = LocalDateTime.now()
+
             if (pickedAltarBoy == null || pickedEvent == null) {
                 Toast.makeText(
                     requireContext(),
@@ -103,13 +104,17 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
                     getString(R.string.toast_choose_again),
                     Toast.LENGTH_LONG
                 ).show()
+            } else if (loggedInLastHalfAnHour(pickedAltarBoy, now)) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.toast_frequent_log_in_protection),
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
                 viewModel.createPresence(
-                    binding.spinnerAltarBoys.selectedItem as AltarBoy,
-                    Presence(
-                        binding.spinnerEvents.selectedItem as Event,
-                        LocalDateTime.now().toString()
-                    ),
+                    pickedAltarBoy,
+                    pickedEvent,
+                    now,
                     this
                 )
 
@@ -119,10 +124,19 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
         }
     }
 
+    private fun loggedInLastHalfAnHour(altarBoy: AltarBoy, now: LocalDateTime): Boolean {
+        return altarBoy.lastLogin != null
+                && LocalDateTime
+                    .parse(altarBoy.lastLogin)
+                    .plusMinutes(30)
+                    .isAfter(now)
+    }
+
     private fun getAltarBoysSpinnerAdapter(altarBoys: ArrayList<AltarBoy>):
             ArrayAdapter<AltarBoy> {
 
-        if (altarBoys[0].name != getString(R.string.pick_encourage)) {
+
+        if (altarBoys.isNotEmpty() && altarBoys[0].name != getString(R.string.pick_encourage)) {
             altarBoys.add(0, AltarBoy(getString(R.string.pick_encourage)))
         }
         val adapter = ArrayAdapter(
@@ -137,7 +151,7 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
     private fun getEventsSpinnerAdapter(events: ArrayList<Event>):
             ArrayAdapter<Event> {
 
-        if (events[0].name != getString(R.string.pick_encourage)) {
+        if (events.isNotEmpty() && events[0].name != getString(R.string.pick_encourage)) {
             events.add(0, Event(getString(R.string.pick_encourage)))
         }
         val adapter = ArrayAdapter(

@@ -92,7 +92,7 @@ class AdministrationFragment : Fragment(), AdministrationViewModel.FirebaseStatu
     private fun getAltarBoysSpinnerAdapter(altarBoys: ArrayList<AltarBoy>):
             ArrayAdapter<AltarBoy> {
 
-        if (altarBoys[0].name != getString(R.string.pick_encourage)) {
+        if (altarBoys.isNotEmpty() && altarBoys[0].name != getString(R.string.pick_encourage)) {
             altarBoys.add(0, AltarBoy(getString(R.string.pick_encourage)))
         }
         val adapter = ArrayAdapter(
@@ -106,7 +106,7 @@ class AdministrationFragment : Fragment(), AdministrationViewModel.FirebaseStatu
 
     private fun getEventsSpinnerAdapter(events: ArrayList<Event>):
             ArrayAdapter<Event> {
-        if (events[0].name != getString(R.string.pick_encourage)) {
+        if (events.isNotEmpty() && events[0].name != getString(R.string.pick_encourage)) {
             events.add(0, Event(getString(R.string.pick_encourage)))
         }
         val adapter = ArrayAdapter(
