@@ -44,6 +44,7 @@
     <string name="toast_events_names_problem">There is problem with events names.</string>
     <string name="toast_update_success">Update went successful.</string>
     <string name="toast_update_failure">Update failure! Check data for change and maybe try again.</string>
+    <string name="toast_bad_password">Something went wrong with password! Contact with administrator.</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

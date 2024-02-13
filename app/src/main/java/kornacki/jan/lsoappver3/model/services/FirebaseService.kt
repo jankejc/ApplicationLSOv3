@@ -17,15 +17,37 @@ object FirebaseService {
     enum class UsefulNodesNames(val nodeName: String) {
         ALTAR_BOYS("altar_boys"),
         EVENTS("events"),
+        ADMIN_PASSWORD("admin_password")
     }
 
     private val db = Firebase.database
     private val altarBoysDbRef = db.getReference(UsefulNodesNames.ALTAR_BOYS.nodeName)
     private val eventsDbRef = db.getReference(UsefulNodesNames.EVENTS.nodeName)
+    private val adminPasswordDbRef = db.getReference(UsefulNodesNames.ADMIN_PASSWORD.nodeName)
+    private var adminPassword: String? = null
 
     init {
         readAltarBoys()
         readEvents()
+        readAdminPassword()
+    }
+
+    fun getAdminPassword(): String? = adminPassword
+
+    private fun readAdminPassword() {
+        adminPasswordDbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                adminPassword = dataSnapshot.getValue(String::class.java)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(
+                    FIREBASE_SERVICE_TAG,
+                    "Failed to read admin password value.",
+                    error.toException()
+                )
+            }
+        })
     }
 
     fun createAltarBoy(

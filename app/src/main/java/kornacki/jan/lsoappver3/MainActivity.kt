@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.setPadding
 import androidx.navigation.NavController
 import kornacki.jan.lsoappver3.databinding.ActivityMainBinding
+import kornacki.jan.lsoappver3.model.services.FirebaseService
 
 class MainActivity : AppCompatActivity() {
 
@@ -63,19 +64,28 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_administration -> {
                 val passwordInput = EditText(this)
-                passwordInput.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                passwordInput.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
                 AlertDialog.Builder(this)
                     .setTitle(getString(R.string.alert_password_needed))
                     .setView(getContainerizedView(passwordInput))
                     .setPositiveButton(getString(R.string.alert_option_accept)) { _, _ ->
                         val password = passwordInput.text.toString()
-                        if (password == "") { // TODO: get pass from db
-                            navController.navigate(R.id.AdministrationFragment)
+                        if (FirebaseService.getAdminPassword() != null) {
+                            if (password == FirebaseService.getAdminPassword()) {
+                                navController.navigate(R.id.AdministrationFragment)
+                            } else {
+                                Toast.makeText(
+                                    applicationContext,
+                                    getString(R.string.toast_wrong_password),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         } else {
                             Toast.makeText(
                                 applicationContext,
-                                getString(R.string.toast_wrong_password),
+                                getString(R.string.toast_bad_password),
                                 Toast.LENGTH_LONG
                             ).show()
                         }
@@ -84,14 +94,17 @@ class MainActivity : AppCompatActivity() {
                     .show()
                 true
             }
+
             R.id.action_leaderboard -> {
                 navController.navigate(R.id.LeaderboardFragment)
                 true
             }
+
             R.id.action_enrollment -> {
                 navController.navigate(R.id.EnrollmentFragment)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
