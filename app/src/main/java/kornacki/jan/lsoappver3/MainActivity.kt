@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setTitle(getString(R.string.alert_password_needed))
                     .setView(passwordInput)
-                    .setPositiveButton(getString(R.string.alert_option_accept)) { dialog, which ->
+                    .setPositiveButton(getString(R.string.alert_option_accept)) { _, _ ->
                         val password = passwordInput.text.toString()
                         if (password == "lsoxms") { // TODO: get pass from db
                             navController.navigate(R.id.AdministrationFragment)
@@ -87,8 +87,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        if (navController.currentDestination?.id != R.id.EnrollmentFragment) {
+            navController.navigate(R.id.EnrollmentFragment)
+        }
+
+        return true
     }
 
     @Deprecated("Deprecated in Java")
