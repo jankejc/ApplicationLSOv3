@@ -7,7 +7,6 @@ import kornacki.jan.lsoappver3.model.objects.AltarBoy
 import kornacki.jan.lsoappver3.model.objects.Event
 import kornacki.jan.lsoappver3.model.objects.Presence
 import kornacki.jan.lsoappver3.model.services.FirebaseService
-import java.time.LocalDateTime
 
 object EnrollmentViewModel : ViewModel() {
     // LiveData

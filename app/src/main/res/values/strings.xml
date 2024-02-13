@@ -22,6 +22,12 @@
     <string name="toast_no_data">Lack of names or events! Contact with administrator.</string>
     <string name="pick_encourage">choose</string>
 
+    <!-- Administration View -->
+    <string name="button_add_altar_boy">add altar boy</string>
+    <string name="button_delete_altar_boy">delete altar boy</string>
+    <string name="button_add_event">add event</string>
+    <string name="button_delete_event">delete event</string>
+
     <!-- General messages -->
     <string name="toast_altar_boys_names_problem">There is problem with altar boys names.</string>
     <string name="toast_events_names_problem">There is problem with events names.</string>

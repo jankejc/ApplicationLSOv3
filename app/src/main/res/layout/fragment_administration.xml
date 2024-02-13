@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.AdministrationFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <Button
+        android:id="@+id/btn_add_altar_boy"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:textSize="20sp"
+        android:text="@string/button_add_altar_boy"
+        app:layout_constraintBottom_toTopOf="@id/btn_delete_altar_boy"
+        app:layout_constraintEnd_toStartOf="@id/btn_add_event"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_add_event"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:textSize="20sp"
+        android:text="@string/button_add_event"
+        app:layout_constraintBottom_toTopOf="@id/btn_delete_event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_add_altar_boy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/btn_delete_altar_boy"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:textSize="20sp"
+        android:text="@string/button_delete_altar_boy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete_event"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_altar_boy" />
+
+    <Button
+        android:id="@+id/btn_delete_event"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:textSize="20sp"
+        android:text="@string/button_delete_event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_delete_altar_boy"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_event" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
