@@ -120,10 +120,10 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
         altarBoys.add(0, AltarBoy(getString(R.string.pick_encourage)))
         val adapter = ArrayAdapter(
             requireContext(),
-            android.R.layout.simple_spinner_item,
+            R.layout.bigger_spinner_item,
             altarBoys
         )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(R.layout.bigger_spinner_dropdown_item)
         return adapter
     }
 
@@ -133,10 +133,10 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
         events.add(0, Event(getString(R.string.pick_encourage)))
         val adapter = ArrayAdapter(
             requireContext(),
-            android.R.layout.simple_spinner_item,
+            R.layout.bigger_spinner_item,
             events
         )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(R.layout.bigger_spinner_dropdown_item)
         return adapter
     }
 

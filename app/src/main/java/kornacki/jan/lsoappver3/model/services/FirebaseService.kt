@@ -35,7 +35,8 @@ object FirebaseService {
         // I know that I have here non-null object,
         // because in alert I accept only non-empty string,
         // so object must have been well-initialized.
-        altarBoysDbRef.child(altarBoy.name!!)
+        altarBoysDbRef
+            .child(altarBoy.name!!)
             .setValue(altarBoy)
             .addOnCompleteListener { task ->
                 // This is asynchronous...
@@ -62,7 +63,6 @@ object FirebaseService {
     }
 
     private fun readAltarBoys() {
-
         altarBoysDbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val altarBoys = arrayListOf<AltarBoy>()
