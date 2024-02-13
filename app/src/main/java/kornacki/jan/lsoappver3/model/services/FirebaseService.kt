@@ -50,6 +50,39 @@ object FirebaseService {
         })
     }
 
+    fun deleteAltarBoy(
+        altarBoy: AltarBoy,
+        callback: AdministrationViewModel.FirebaseStatusCallback,
+    ) {
+        altarBoysDbRef
+            .child(altarBoy.name!!)
+            .removeValue()
+            .addOnCompleteListener { task ->
+                // This is asynchronous...
+                if (task.isSuccessful) {
+                    callback.onUpdateSuccess()
+                } else {
+                    callback.onUpdateFailure()
+                }
+            }
+    }
+    fun deleteEvent(
+        event: Event,
+        callback: AdministrationViewModel.FirebaseStatusCallback,
+    ) {
+        eventsDbRef
+            .child(event.name!!)
+            .removeValue()
+            .addOnCompleteListener { task ->
+                // This is asynchronous...
+                if (task.isSuccessful) {
+                    callback.onUpdateSuccess()
+                } else {
+                    callback.onUpdateFailure()
+                }
+            }
+    }
+
     fun createAltarBoy(
         altarBoy: AltarBoy,
         callback: AdministrationViewModel.FirebaseStatusCallback,
@@ -95,6 +128,7 @@ object FirebaseService {
                     }
                 }
                 EnrollmentViewModel.updateAltarBoys(altarBoys)
+                AdministrationViewModel.altarBoys = altarBoys
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -133,6 +167,7 @@ object FirebaseService {
                     }
                 }
                 EnrollmentViewModel.updateEvents(events)
+                AdministrationViewModel.events = events
             }
 
             override fun onCancelled(error: DatabaseError) {

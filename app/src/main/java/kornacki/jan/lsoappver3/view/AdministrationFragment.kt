@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -15,6 +17,8 @@ import androidx.core.view.setPadding
 import kornacki.jan.lsoappver3.R
 import kornacki.jan.lsoappver3.viewModel.AdministrationViewModel
 import kornacki.jan.lsoappver3.databinding.FragmentAdministrationBinding
+import kornacki.jan.lsoappver3.model.objects.AltarBoy
+import kornacki.jan.lsoappver3.model.objects.Event
 
 class AdministrationFragment : Fragment(), AdministrationViewModel.FirebaseStatusCallback {
     private var _binding: FragmentAdministrationBinding? = null
@@ -44,6 +48,14 @@ class AdministrationFragment : Fragment(), AdministrationViewModel.FirebaseStatu
 
         binding.btnAddEvent.setOnClickListener {
             addEvent()
+        }
+
+        binding.btnDeleteAltarBoy.setOnClickListener {
+            deleteAltarBoy()
+        }
+
+        binding.btnDeleteEvent.setOnClickListener {
+            deleteEvent()
         }
     }
 
@@ -77,6 +89,87 @@ class AdministrationFragment : Fragment(), AdministrationViewModel.FirebaseStatu
             .show()
     }
 
+    private fun getAltarBoysSpinnerAdapter(altarBoys: ArrayList<AltarBoy>):
+            ArrayAdapter<AltarBoy> {
+
+        if (altarBoys[0].name != getString(R.string.pick_encourage)) {
+            altarBoys.add(0, AltarBoy(getString(R.string.pick_encourage)))
+        }
+        val adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.bigger_spinner_item,
+            altarBoys
+        )
+        adapter.setDropDownViewResource(R.layout.bigger_spinner_dropdown_item)
+        return adapter
+    }
+
+    private fun getEventsSpinnerAdapter(events: ArrayList<Event>):
+            ArrayAdapter<Event> {
+        if (events[0].name != getString(R.string.pick_encourage)) {
+            events.add(0, Event(getString(R.string.pick_encourage)))
+        }
+        val adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.bigger_spinner_item,
+            events
+        )
+        adapter.setDropDownViewResource(R.layout.bigger_spinner_dropdown_item)
+        return adapter
+    }
+
+    private fun isBlankOption(id: Long): Boolean = id == 0L
+
+    private fun deleteAltarBoy() {
+        val spinner = Spinner(context)
+        spinner.adapter = getAltarBoysSpinnerAdapter(viewModel.altarBoys)
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.alert_choose_a_boy))
+            .setView(getContainerizedView(spinner))
+            .setPositiveButton(getString(R.string.alert_option_accept)) { _, _ ->
+                val selectedItemId = spinner.selectedItemId
+                val altarBoy = spinner.selectedItem as AltarBoy
+
+                if (isBlankOption(selectedItemId)) {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.toast_pick_a_boy),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    viewModel.deleteAltarBoy(altarBoy, this)
+                }
+            }
+            .setNegativeButton(getString(R.string.alert_option_decline), null)
+            .show()
+    }
+
+    private fun deleteEvent() {
+        val spinner = Spinner(context)
+        spinner.adapter = getEventsSpinnerAdapter(viewModel.events)
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.alert_choose_event))
+            .setView(getContainerizedView(spinner))
+            .setPositiveButton(getString(R.string.alert_option_accept)) { _, _ ->
+                val selectedItemId = spinner.selectedItemId
+                val event = spinner.selectedItem as Event
+
+                if (isBlankOption(selectedItemId)) {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.toast_pick_event),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    viewModel.deleteEvent(event, this)
+                }
+            }
+            .setNegativeButton(getString(R.string.alert_option_decline), null)
+            .show()
+    }
+
     private fun String.isNumeric(): Boolean {
         return this.matches(Regex("^[0-9]+$"))
     }
@@ -87,7 +180,7 @@ class AdministrationFragment : Fragment(), AdministrationViewModel.FirebaseStatu
 
     private fun getAddEventAlertView(
         editTextName: EditText,
-        editTextPoints: EditText
+        editTextPoints: EditText,
     ): LinearLayout {
         val textNameEncourage = TextView(context)
         val textPointsEncourage = TextView(context)

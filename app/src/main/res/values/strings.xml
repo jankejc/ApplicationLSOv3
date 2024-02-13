@@ -20,7 +20,6 @@
     <string name="toast_presence_add_successful">Adding the presence successful!</string>
     <string name="toast_choose_again">Wrong name or event! Choose again.</string>
     <string name="toast_no_data">Lack of names or events! Contact with administrator.</string>
-    <string name="pick_encourage">touch</string>
 
     <!-- Administration View -->
     <string name="button_add_altar_boy">add altar boy</string>
@@ -38,6 +37,11 @@
     <string name="toast_event_wrong_points">Wrong points!</string>
     <string name="alert_add_event_type_name">Type name</string>
     <string name="alert_add_event_type_points">Type points</string>
+    <string name="toast_pick_a_boy">You must pick a boy!</string>
+    <string name="alert_choose_a_boy">Choose altar boy</string>
+    <string name="alert_choose_event">Choose event</string>
+    <string name="toast_pick_event">You must pick an event!</string>
+
 
     <!-- General messages -->
     <string name="toast_altar_boys_names_problem">There is problem with altar boys names.</string>
@@ -45,6 +49,7 @@
     <string name="toast_update_success">Update went successful.</string>
     <string name="toast_update_failure">Update failure! Check data for change and maybe try again.</string>
     <string name="toast_bad_password">Something went wrong with password! Contact with administrator.</string>
+    <string name="pick_encourage">&lt;choose&gt;</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

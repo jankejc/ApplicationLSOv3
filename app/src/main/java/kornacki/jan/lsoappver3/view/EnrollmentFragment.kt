@@ -78,6 +78,8 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
         }
     }
 
+    private fun isBlankOption(id: Long): Boolean = id == 0L
+
     private fun bindFunctionality() {
         binding.btnEnroll.setOnClickListener {
             val pickedAltarBoyId = binding.spinnerAltarBoys.selectedItemId
@@ -92,7 +94,10 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
                     getString(R.string.toast_no_data),
                     Toast.LENGTH_LONG
                 ).show()
-            } else if (pickedAltarBoyId == 0L || pickedEventId == 0L) {
+            } else if (
+                isBlankOption(pickedAltarBoyId)
+                || isBlankOption(pickedEventId)
+            ) {
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.toast_choose_again),
@@ -117,7 +122,9 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
     private fun getAltarBoysSpinnerAdapter(altarBoys: ArrayList<AltarBoy>):
             ArrayAdapter<AltarBoy> {
 
-        altarBoys.add(0, AltarBoy(getString(R.string.pick_encourage)))
+        if (altarBoys[0].name != getString(R.string.pick_encourage)) {
+            altarBoys.add(0, AltarBoy(getString(R.string.pick_encourage)))
+        }
         val adapter = ArrayAdapter(
             requireContext(),
             R.layout.bigger_spinner_item,
@@ -130,7 +137,9 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
     private fun getEventsSpinnerAdapter(events: ArrayList<Event>):
             ArrayAdapter<Event> {
 
-        events.add(0, Event(getString(R.string.pick_encourage)))
+        if (events[0].name != getString(R.string.pick_encourage)) {
+            events.add(0, Event(getString(R.string.pick_encourage)))
+        }
         val adapter = ArrayAdapter(
             requireContext(),
             R.layout.bigger_spinner_item,
@@ -141,11 +150,19 @@ class EnrollmentFragment : Fragment(), EnrollmentViewModel.FirebaseStatusCallbac
     }
 
     override fun onUpdateSuccess() {
-        Toast.makeText(context, getString(R.string.toast_presence_add_successful), Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            context,
+            getString(R.string.toast_presence_add_successful),
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun onUpdateFailure() {
-        Toast.makeText(context, getString(R.string.toast_db_error_no_presence_add), Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            context,
+            getString(R.string.toast_db_error_no_presence_add),
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun onDestroyView() {

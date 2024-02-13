@@ -6,12 +6,23 @@ import kornacki.jan.lsoappver3.model.objects.Event
 import kornacki.jan.lsoappver3.model.services.FirebaseService
 
 object AdministrationViewModel : ViewModel() {
+    var altarBoys = ArrayList<AltarBoy>()
+    var events = ArrayList<Event>()
+
     fun createAltarBoy(name: String, callback: FirebaseStatusCallback) {
         FirebaseService.createAltarBoy(AltarBoy(name.trim()), callback)
     }
 
     fun createEvent(name: String, points: Int, callback: FirebaseStatusCallback) {
         FirebaseService.createEvent(Event(name.trim(), points), callback)
+    }
+
+    fun deleteAltarBoy(altarBoy: AltarBoy, callback: FirebaseStatusCallback) {
+        FirebaseService.deleteAltarBoy(altarBoy, callback)
+    }
+
+    fun deleteEvent(event: Event, callback: FirebaseStatusCallback) {
+        FirebaseService.deleteEvent(event, callback)
     }
 
     interface FirebaseStatusCallback {
