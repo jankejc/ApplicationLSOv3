@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/btn_enroll"
-        android:layout_width="160dp"
+        android:layout_width="170dp"
         android:layout_height="110dp"
         android:layout_marginTop="170dp"
         android:text="@string/enroll"

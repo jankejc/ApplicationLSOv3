@@ -89,12 +89,12 @@ class MainActivity : AppCompatActivity() {
                     .show()
                 true
             }
-
+/* TODO
             R.id.action_leaderboard -> {
                 navController.navigate(R.id.LeaderboardFragment)
                 true
             }
-
+*/
             R.id.action_enrollment -> {
                 navController.navigate(R.id.EnrollmentFragment)
                 true

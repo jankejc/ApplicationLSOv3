@@ -1,0 +1,56 @@
+<resources>
+    <!-- General -->
+    <string name="app_name">MojeLSO</string>
+    <string name="action_administration">Zarządzanie</string>
+    <string name="action_leaderboard">Ranking</string>
+    <string name="action_enrollment">Zapisy</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="enrollment_fragment_label">Zapisy</string>
+    <string name="leaderboard_fragment_label">Ranking</string>
+    <string name="administration_fragment_label">Zarządzanie</string>
+
+    <!-- Enrollment View -->
+    <string name="altar_boy_pick_encourage">Znajdź się</string>
+    <string name="event_pick_encourage">Wybierz okazję</string>
+    <string name="enroll">Zapisz się!</string>
+    <string name="toast_db_error_no_presence_add">Dodawanie obecności nie powiodło się!</string>
+    <string name="toast_presence_add_successful">Obecność została dodana!</string>
+    <string name="toast_choose_again">Niepoprawne nazwa lub okazja! Wybierz jeszcze raz.</string>
+    <string name="toast_no_data">Brak imion lub okazji! Skontaktuj się z administratorem.</string>
+    <string name="toast_frequent_log_in_protection">Zapisałeś się w przeciągu ostatnich 30 minut. Musisz poczekać.</string>
+
+    <!-- Administration View -->
+    <string name="button_add_altar_boy">dodaj ministranta</string>
+    <string name="button_delete_altar_boy">usuń ministranta</string>
+    <string name="button_add_event">dodaj okazję</string>
+    <string name="button_delete_event">usuń okazję</string>
+    <string name="alert_password_needed">Podaj hasło</string>
+    <string name="alert_option_accept">Akceptuj</string>
+    <string name="alert_option_decline">Anuluj</string>
+    <string name="toast_wrong_password">Złe hasło!</string>
+    <string name="alert_type_altar_boy_name">Wpisz nazwę ministranta</string>
+    <string name="toast_altar_boy_wrong_name">Zła nazwa ministranta!</string>
+    <string name="toast_event_wrong_name">Zła nazwa okazji!</string>
+    <string name="alert_specify_event_name">Wypełnij dane okazji</string>
+    <string name="toast_event_wrong_points">Niepoprawne punkty!</string>
+    <string name="alert_add_event_type_name">Wpisz nazwę</string>
+    <string name="alert_add_event_type_points">Wpisz liczbę punktów</string>
+    <string name="toast_pick_a_boy">Musisz wybrać ministranta!</string>
+    <string name="alert_choose_a_boy">Wybierz ministranta</string>
+    <string name="alert_choose_event">Wybierz okazję</string>
+    <string name="toast_pick_event">Musisz wybrać okazję!</string>
+
+
+    <!-- General messages -->
+    <string name="toast_altar_boys_names_problem">Problem z nazwami ministrantów! Skontaktuj się z administratorem.</string>
+    <string name="toast_events_names_problem">Problem z nazwami okazji! Skontaktuj się z administratorem.</string>
+    <string name="toast_update_success">Operacja udana.</string>
+    <string name="toast_update_failure">Operacja nieudana! Sprawdź dane i może spróbuj później.</string>
+    <string name="toast_bad_password">Coś poszło nie tak z hasłem! Skontaktuj się z administratorem.</string>
+    <string name="pick_encourage">&lt;wybierz&gt;</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+    </string>
+</resources>
