@@ -41,6 +41,11 @@
     <string name="alert_choose_event">Choose event</string>
     <string name="toast_pick_event">You must pick an event!</string>
 
+    <!-- TODO translate -->
+    <!-- Leaderboard View -->
+    <string name="button_choose_start_day" translatable="false">From</string>
+    <string name="button_choose_end_day" translatable="false">To</string>
+    <string name="button_filter" translatable="false">Filter</string>
 
     <!-- General messages -->
     <string name="toast_altar_boys_names_problem">There is problem with altar boys names! Contact with administrator.</string>

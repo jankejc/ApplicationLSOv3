@@ -15,9 +15,9 @@
         android:title="@string/action_administration"
         app:showAsAction="never" />
 
-    <!--TODO<item
+    <item
         android:id="@+id/action_leaderboard"
         android:orderInCategory="20"
         android:title="@string/action_leaderboard"
-        app:showAsAction="never" />-->
+        app:showAsAction="never" />
 </menu>
