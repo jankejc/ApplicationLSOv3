@@ -17,6 +17,7 @@ import androidx.core.view.setPadding
 import kornacki.jan.lsoappver3.R
 import kornacki.jan.lsoappver3.viewModel.AdministrationViewModel
 import kornacki.jan.lsoappver3.databinding.FragmentAdministrationBinding
+import kornacki.jan.lsoappver3.model.adapters.EventsWithPointsAdapter
 import kornacki.jan.lsoappver3.model.objects.AltarBoy
 import kornacki.jan.lsoappver3.model.objects.Event
 
@@ -105,13 +106,13 @@ class AdministrationFragment : Fragment(), AdministrationViewModel.FirebaseStatu
     }
 
     private fun getEventsSpinnerAdapter(events: ArrayList<Event>):
-            ArrayAdapter<Event> {
+            EventsWithPointsAdapter {
         if (events.isNotEmpty() && events[0].name != getString(R.string.pick_encourage)) {
             events.add(0, Event(getString(R.string.pick_encourage)))
         }
-        val adapter = ArrayAdapter(
+
+        val adapter = EventsWithPointsAdapter(
             requireContext(),
-            R.layout.bigger_spinner_item,
             events
         )
         adapter.setDropDownViewResource(R.layout.bigger_spinner_dropdown_item)
