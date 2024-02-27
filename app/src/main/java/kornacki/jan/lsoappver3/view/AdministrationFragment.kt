@@ -90,30 +90,36 @@ class AdministrationFragment : Fragment(), AdministrationViewModel.FirebaseStatu
             .show()
     }
 
-    private fun getAltarBoysSpinnerAdapter(altarBoys: ArrayList<AltarBoy>):
+    private fun getAltarBoysSpinnerAdapter(altarBoys: List<AltarBoy>):
             ArrayAdapter<AltarBoy> {
 
+        var altarBoysToSpinner = altarBoys
         if (altarBoys.isNotEmpty() && altarBoys[0].name != getString(R.string.pick_encourage)) {
-            altarBoys.add(0, AltarBoy(getString(R.string.pick_encourage)))
+            altarBoysToSpinner =
+                listOf(AltarBoy(getString(R.string.pick_encourage))) + altarBoys
         }
+
         val adapter = ArrayAdapter(
             requireContext(),
             R.layout.bigger_spinner_item,
-            altarBoys
+            altarBoysToSpinner
         )
+
         adapter.setDropDownViewResource(R.layout.bigger_spinner_dropdown_item)
         return adapter
     }
 
-    private fun getEventsSpinnerAdapter(events: ArrayList<Event>):
+    private fun getEventsSpinnerAdapter(events: List<Event>):
             EventsWithPointsAdapter {
+
+        var eventsToSpinner = events
         if (events.isNotEmpty() && events[0].name != getString(R.string.pick_encourage)) {
-            events.add(0, Event(getString(R.string.pick_encourage)))
+            eventsToSpinner = listOf(Event(getString(R.string.pick_encourage))) + events
         }
 
         val adapter = EventsWithPointsAdapter(
             requireContext(),
-            events
+            eventsToSpinner
         )
         adapter.setDropDownViewResource(R.layout.bigger_spinner_dropdown_item)
         return adapter

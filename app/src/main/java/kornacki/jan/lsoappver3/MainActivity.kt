@@ -40,8 +40,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
         return true
     }
+
 
     private fun getContainerizedView(view: View): LinearLayout {
         val container = LinearLayout(this)
@@ -89,22 +91,25 @@ class MainActivity : AppCompatActivity() {
                     .show()
                 true
             }
+
             R.id.action_leaderboard -> {
-                navController.navigate(R.id.LeaderboardFragment)
+                navController.navigate(R.id.LeaderboardOptionsFragment)
                 true
             }
+
             R.id.action_enrollment -> {
                 navController.navigate(R.id.EnrollmentFragment)
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        if (navController.currentDestination?.id != R.id.EnrollmentFragment) {
+        if (navController.currentDestination?.id == R.id.LeaderboardResultsFragment) {
+            navController.navigate(R.id.action_LeaderboardResultsFragment_to_LeaderboardOptionsFragment)
+        } else if (navController.currentDestination?.id != R.id.EnrollmentFragment) {
             navController.navigate(R.id.EnrollmentFragment)
         }
 
@@ -113,7 +118,9 @@ class MainActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        if (navController.currentDestination?.id != R.id.EnrollmentFragment) {
+        if (navController.currentDestination?.id == R.id.LeaderboardResultsFragment) {
+            navController.navigate(R.id.action_LeaderboardResultsFragment_to_LeaderboardOptionsFragment)
+        } else if (navController.currentDestination?.id != R.id.EnrollmentFragment) {
             navController.navigate(R.id.EnrollmentFragment)
         }
     }

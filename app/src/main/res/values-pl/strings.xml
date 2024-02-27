@@ -4,10 +4,13 @@
     <string name="action_administration">Zarządzanie</string>
     <string name="action_leaderboard">Ranking</string>
     <string name="action_enrollment">Zapisy</string>
+    <string name="csv_file_header">Miejsce, Imię i nazwisko, Punkty</string>
+    <string name="download_csv">Pobierz CSV</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="enrollment_fragment_label">Zapisy</string>
-    <string name="leaderboard_fragment_label">Ranking</string>
+    <string name="leaderboard_options_fragment_label">Opcje Rankingu</string>
+    <string name="leaderboard_results_fragment_label">Wyniki</string>
     <string name="administration_fragment_label">Zarządzanie</string>
 
     <!-- Enrollment View -->
@@ -41,6 +44,14 @@
     <string name="alert_choose_event">Wybierz okazję</string>
     <string name="toast_pick_event">Musisz wybrać okazję!</string>
 
+    <!-- Leaderboard View -->
+    <string name="button_choose_start_day">Od</string>
+    <string name="button_choose_end_day">Do</string>
+    <string name="button_filter">Filtruj</string>
+    <string name="alert_type_results_filename">Wpisz nazwę pliku (a-z)</string>
+    <string name="toast_wrong_filename">Zła nazwa pliku</string>
+    <string name="toast_results_downloaded">Wyniki zostały pobrane na urządzenie</string>
+    <string name="toast_results_not_downloaded">Wyniki NIE zostały pobrane! Skontaktuj się z administratorem.</string>
 
     <!-- General messages -->
     <string name="toast_altar_boys_names_problem">Problem z nazwami ministrantów! Skontaktuj się z administratorem.</string>

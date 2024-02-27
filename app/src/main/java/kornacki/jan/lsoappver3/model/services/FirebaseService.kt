@@ -10,6 +10,7 @@ import kornacki.jan.lsoappver3.model.objects.AltarBoy
 import kornacki.jan.lsoappver3.model.objects.Event
 import kornacki.jan.lsoappver3.viewModel.AdministrationViewModel
 import kornacki.jan.lsoappver3.viewModel.EnrollmentViewModel
+import kornacki.jan.lsoappver3.viewModel.LeaderboardOptionsViewModel
 
 const val FIREBASE_SERVICE_TAG = "Firebase Service"
 
@@ -127,6 +128,7 @@ object FirebaseService {
                         altarBoys.add(it)
                     }
                 }
+                LeaderboardOptionsViewModel.altarBoys = altarBoys
                 EnrollmentViewModel.updateAltarBoys(altarBoys)
                 AdministrationViewModel.altarBoys = altarBoys
             }
@@ -168,6 +170,7 @@ object FirebaseService {
                 }
                 EnrollmentViewModel.updateEvents(events)
                 AdministrationViewModel.events = events
+                LeaderboardOptionsViewModel.events = events
             }
 
             override fun onCancelled(error: DatabaseError) {

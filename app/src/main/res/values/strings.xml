@@ -4,10 +4,13 @@
     <string name="action_administration">Administration</string>
     <string name="action_leaderboard">Leaderboard</string>
     <string name="action_enrollment">Enrollment</string>
+    <string name="csv_file_header">Place, Name, Points</string>
+    <string name="download_csv">Download CSV</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="enrollment_fragment_label">Enrollment</string>
-    <string name="leaderboard_fragment_label">Leaderboard</string>
+    <string name="leaderboard_options_fragment_label">Leaderboard Options</string>
+    <string name="leaderboard_results_fragment_label">Leaderboard Results</string>
     <string name="administration_fragment_label">Administration</string>
 
     <!-- Enrollment View -->
@@ -41,11 +44,14 @@
     <string name="alert_choose_event">Choose event</string>
     <string name="toast_pick_event">You must pick an event!</string>
 
-    <!-- TODO translate -->
     <!-- Leaderboard View -->
-    <string name="button_choose_start_day" translatable="false">From</string>
-    <string name="button_choose_end_day" translatable="false">To</string>
-    <string name="button_filter" translatable="false">Filter</string>
+    <string name="button_choose_start_day">From</string>
+    <string name="button_choose_end_day">To</string>
+    <string name="button_filter">Filter</string>
+    <string name="alert_type_results_filename">Enter filename (a-z)</string>
+    <string name="toast_wrong_filename">Wrong filename!</string>
+    <string name="toast_results_downloaded">Results have been downloaded</string>
+    <string name="toast_results_not_downloaded">Results have NOT been downloaded! Contact with admin.</string>
 
     <!-- General messages -->
     <string name="toast_altar_boys_names_problem">There is problem with altar boys names! Contact with administrator.</string>

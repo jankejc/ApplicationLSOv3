@@ -11,17 +11,17 @@ import java.time.LocalDateTime
 
 object EnrollmentViewModel : ViewModel() {
     // LiveData
-    private val _altarBoys = MutableLiveData<ArrayList<AltarBoy>>()
-    val altarBoys: LiveData<ArrayList<AltarBoy>> = _altarBoys
+    private val _altarBoys = MutableLiveData<List<AltarBoy>>()
+    val altarBoys: LiveData<List<AltarBoy>> = _altarBoys
 
-    private val _events = MutableLiveData<ArrayList<Event>>()
-    val events: LiveData<ArrayList<Event>> = _events
+    private val _events = MutableLiveData<List<Event>>()
+    val events: LiveData<List<Event>> = _events
 
     /**
      * When database react to changed data it calls this method to update the list.
      * ViewModel lives until activity doesn't die.
      */
-    fun updateAltarBoys(altarBoys: ArrayList<AltarBoy>) {
+    fun updateAltarBoys(altarBoys: List<AltarBoy>) {
         _altarBoys.value = altarBoys
     }
 
@@ -29,7 +29,7 @@ object EnrollmentViewModel : ViewModel() {
      * When database react to changed data it calls this method to update the list.
      * ViewModel lives until activity doesn't die.
      */
-    fun updateEvents(events: ArrayList<Event>) {
+    fun updateEvents(events: List<Event>) {
         _events.value = events
     }
 

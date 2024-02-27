@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.LeaderboardOptionsFragment">
+
+    <Button
+        android:id="@+id/btn_choose_start_day"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"
+        android:text="@string/button_choose_start_day"
+        app:layout_constraintBottom_toTopOf="@id/tv_start_day_status"
+        app:layout_constraintEnd_toStartOf="@id/btn_choose_end_day"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_choose_end_day"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"
+        android:text="@string/button_choose_end_day"
+        app:layout_constraintBottom_toTopOf="@id/tv_end_day_status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_choose_start_day"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_start_day_status"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_choose_start_day"
+        app:layout_constraintBottom_toTopOf="@id/lv_events_list"
+        app:layout_constraintEnd_toStartOf="@id/tv_end_day_status" />
+
+    <TextView
+        android:id="@+id/tv_end_day_status"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@id/tv_start_day_status"
+        app:layout_constraintTop_toBottomOf="@id/btn_choose_end_day"
+        app:layout_constraintBottom_toTopOf="@id/lv_events_list"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ListView
+        android:id="@+id/lv_events_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_filter"
+        app:layout_constraintTop_toBottomOf="@id/tv_start_day_status" />
+
+    <Button
+        android:id="@+id/btn_filter"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="20sp"
+        android:text="@string/button_filter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lv_events_list" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

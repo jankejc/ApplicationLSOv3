@@ -12,14 +12,18 @@
         tools:layout="@layout/fragment_enrollment">
     </fragment>
     <fragment
-        android:id="@+id/LeaderboardFragment"
-        android:name="kornacki.jan.lsoappver3.view.LeaderboardFragment"
-        android:label="@string/leaderboard_fragment_label"
-        tools:layout="@layout/fragment_leaderboard">
+        android:id="@+id/LeaderboardOptionsFragment"
+        android:name="kornacki.jan.lsoappver3.view.LeaderboardOptionsFragment"
+        android:label="@string/leaderboard_options_fragment_label"
+        tools:layout="@layout/fragment_leaderboard_options">
 
         <action
-            android:id="@+id/action_LeaderboardFragment_to_EnrollmentFragment"
+            android:id="@+id/action_LeaderboardOptionsFragment_to_EnrollmentFragment"
             app:destination="@id/EnrollmentFragment" />
+
+        <action
+            android:id="@+id/action_LeaderboardOptionsFragment_to_LeaderboardResultsFragment"
+            app:destination="@id/LeaderboardResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/AdministrationFragment"
@@ -30,5 +34,16 @@
         <action
             android:id="@+id/action_AdministrationFragment_to_EnrollmentFragment"
             app:destination="@id/EnrollmentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/LeaderboardResultsFragment"
+        android:name="kornacki.jan.lsoappver3.view.LeaderboardResultsFragment"
+        android:label="@string/leaderboard_results_fragment_label"
+        tools:layout="@layout/fragment_leaderboard_results">
+
+        <action
+            android:id="@+id/action_LeaderboardResultsFragment_to_LeaderboardOptionsFragment"
+            app:destination="@id/LeaderboardOptionsFragment" />
     </fragment>
 </navigation>

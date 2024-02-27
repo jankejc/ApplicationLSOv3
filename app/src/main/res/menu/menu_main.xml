@@ -7,17 +7,20 @@
         android:id="@+id/action_enrollment"
         android:orderInCategory="10"
         android:title="@string/action_enrollment"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_add_24" />
 
     <item
         android:id="@+id/action_administration"
         android:orderInCategory="11"
         android:title="@string/action_administration"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_admin_panel_settings_24" />
 
     <item
         android:id="@+id/action_leaderboard"
         android:orderInCategory="20"
         android:title="@string/action_leaderboard"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_leaderboard_24" />
 </menu>
