@@ -1,7 +1,10 @@
 package kornacki.jan.lsoappver3.view
 
+import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -109,29 +112,41 @@ class LeaderboardResultsFragment : Fragment() {
         val csvStringFromLeaderboard =
             viewModel.getCSVFromLeaderboard(getString(R.string.csv_file_header))
 
+        saveToDocuments(requireContext(), filename, csvStringFromLeaderboard)
+    }
+
+    private fun saveToDocuments(context: Context, filename: String, content: String) {
+        val values = ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, filename + "_" + LocalDateTime.now() + ".csv")
+            put(MediaStore.MediaColumns.MIME_TYPE, "text/csv")
+            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS)
+        }
+
+        val resolver = context.contentResolver
+        val uri = resolver.insert(MediaStore.Files.getContentUri("external"), values)
+
         try {
-            val fileOutput = requireContext().openFileOutput(
-                "${filename + LocalDateTime.now()}.csv",
-                Context.MODE_PRIVATE
-            )
-            fileOutput.write(csvStringFromLeaderboard.toByteArray())
-            fileOutput.close()
+            uri?.let {
+                resolver.openOutputStream(it).use { outputStream ->
+                    outputStream?.write(content.toByteArray())
+                }
+            }
 
             Toast.makeText(
                 context,
                 getString(R.string.toast_results_downloaded),
                 Toast.LENGTH_LONG
             ).show()
-
         } catch (e: Exception) {
-            e.printStackTrace()
             Toast.makeText(
                 context,
                 getString(R.string.toast_results_not_downloaded),
                 Toast.LENGTH_LONG
             ).show()
+            e.printStackTrace()
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
